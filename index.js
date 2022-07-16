@@ -1,4 +1,5 @@
 //Requires
+require('dotenv').config();
 const Discord = require('discord.js');
 
 //Create Client (bot)
@@ -15,7 +16,7 @@ const bot = new Discord.Client({
 });
 
 //Bot start
-bot.login('OTk3ODc1NzAyMTE4NTAyNTIw.G8k7vq.UaanJFrDxbVN-WRbACAtY6inmE5pUKFFUR8org');
+bot.login(process.env.BOT_TOKEN);
 bot.on("ready", () =>{
 	console.log("Moderator ON");
 });
