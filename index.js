@@ -34,5 +34,5 @@ bot.events = new Discord.Collection();
 //Bot start
 bot.login(process.env.BOT_TOKEN);
 bot.on("ready", () =>{
-    
+    bot.events.get("questions").run(bot);
 });
