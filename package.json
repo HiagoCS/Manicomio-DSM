@@ -1,0 +1,24 @@
+{
+  "name": "manicomio-sm",
+  "version": "1.0.0",
+  "description": "Moderator from Manicomio Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiagoCS/Server-Moderator-8CS.git"
+  },
+  "author": "HiagoCS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HiagoCS/Server-Moderator-8CS/issues"
+  },
+  "homepage": "https://github.com/HiagoCS/Server-Moderator-8CS#readme",
+  "dependencies": {
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19"
+  }
+}
