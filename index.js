@@ -71,7 +71,6 @@ bot.on('messageCreate', (msg) =>{
     }
     else{
         let cmd = msg.content;
-        console.log(`cmd = ${cmd}`);
         if(msg.author.bot)
             return;
         let commandFile = bot.commands.get(cmd.slice(process.env.PREFIX.length));
