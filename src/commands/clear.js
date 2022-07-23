@@ -1,10 +1,8 @@
-const Discord = require('discord.js');
-const fs = require('fs');
-
 module.exports = {
     name:"clear",
     run:(bot,msg,args) =>{
-        
+        if(!require("../modulesExports/functions/checkRole")(bot, msg.author))
+            return msg.channel.send({content:`Você não tem permissão para usar este comando!`});
         if(args){
             if(args.includes("#") && args.includes("<") && args.includes(">") && !args.includes("@")){
                 const cId = args.replace(/\D/g, '');
