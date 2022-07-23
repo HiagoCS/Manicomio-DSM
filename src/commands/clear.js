@@ -4,8 +4,57 @@ const fs = require('fs');
 module.exports = {
     name:"clear",
     run:(bot,msg,args) =>{
+        
         if(args){
-            
+            if(args.includes("#") && args.includes("<") && args.includes(">") && !args.includes("@")){
+                const cId = args.replace(/\D/g, '');
+                const channel = bot.guilds.cache.first().channels.cache.find(c => c.id === cId);
+                if(!channel)
+                    return msg.channel.send({content:`Canal não existe!`});
+                let size = 0;
+                channel.messages.fetch()
+                .then(x =>{
+                    x.map(y =>{size++;});
+                    channel.bulkDelete(size);
+                    msg.channel.send({content:size>1?`Foram deletadas ${size} mensagens no canal ${channel.name}!`:`Apenas uma mensagem foi deletada no canal ${channel.name}`});
+                }).catch(console.error);
+            }
+            else if(args.includes("@") && args.includes("<") && args.includes(">") && !args.includes("#")){
+                const uId = args.replace(/\D/g, '');
+                const user = bot.guilds.cache.first().members.cache.find(u => u.id === uId).user;
+                if(!user)
+                    return msg.channel.send({content:`Este usuário não existe!`});
+                msg.channel.messages.fetch()
+                .then(x =>{
+                    const array = [];
+                    x.filter(m => m.author.id === user.id).forEach(message => array.push(message));
+                    msg.channel.bulkDelete(array);
+                    msg.channel.send({content:`Todas as mensagens de ${user.username} foram deletadas!`});
+                }).catch(console.error);
+            }
+            else if(args.includes("@") && args.includes("<") && args.includes(">") && args.includes("#")){
+                const splitItem = args.split(" ");
+                let uId; let cId;
+                for(let i in splitItem){
+                    if(splitItem[i].includes("@")){
+                        uId = splitItem[i].replace(/\D/g, '');
+                    }
+                    else{
+                        cId = splitItem[i].replace(/\D/g, '');
+                    }
+                }
+                const channel = bot.guilds.cache.first().channels.cache.find(c => c.id === cId);
+                const user = bot.guilds.cache.first().members.cache.find(u => u.id === uId).user;
+                if(!user)
+                    return msg.channel.send({content:`Este usuário não existe!`});
+                channel.messages.fetch()
+                .then(x =>{
+                    const array = [];
+                    x.filter(m => m.author.id === user.id).forEach(message => array.push(message));
+                    channel.bulkDelete(array);
+                    msg.channel.send({content:`Todas as mensagens do canal ${channel.name} e do usuário ${user.username} foram deletadas!`});
+                }).catch(console.error);
+            }
         }
         else{
             let size = 0;
