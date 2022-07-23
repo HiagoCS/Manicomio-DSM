@@ -75,6 +75,6 @@ bot.on('messageCreate', (msg) =>{
         if(msg.author.bot)
             return;
         let commandFile = bot.commands.get(cmd.slice(process.env.PREFIX.length));
-        commandFile.run(bot, msg);
+        commandFile.run(bot, msg, null);
     }
 });
