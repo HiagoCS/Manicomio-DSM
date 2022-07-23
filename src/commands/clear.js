@@ -7,6 +7,15 @@ module.exports = {
         if(args){
             
         }
+        else{
+            let size = 0;
+            msg.channel.messages.fetch()
+                .then(x =>{
+                    x.map(y =>{size++;});
+                    msg.channel.bulkDelete(size);
+                    msg.channel.send({content:size>1?`Foram deletadas ${size} mensagens!`:`Apenas uma mensagem foi deletada`});
+                }).catch(console.error);
+        }
     },
     help:{
         title:`!clear`,
