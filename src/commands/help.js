@@ -24,6 +24,14 @@ module.exports = {
     },
     help:{
         title:"!help",
-        description:"Exibe todos os comandos do bot."
+        description:"Exibe todos os comandos do bot.",
+        fields:[
+            {
+                name:`!help`, value:`Exibe todos os comandos do bot com uma descrição.`
+            },
+            {
+                name:`!help comando_sem_prefixo`, value:`Mostra o comando especificado mais detalhamente.`
+            }
+        ]
     }
 }
